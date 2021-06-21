@@ -5,14 +5,12 @@ import java.util.stream.Collectors;
 
 public class Problem1 {
     public static void main(String[] args) {
-        String dupStr = "abcbccddeeeff";
-        Map<Character, Long> result = countDuplicateCharacters(dupStr);
-        System.out.println(result);
+        System.out.println(countDuplicateCharacters("abcbccddeeeff"));
     }
 
-    public static Map<Character, Long> countDuplicateCharacters(String str) {
-        return str.chars()
-                  .mapToObj(c -> (char) c)
+    public static Map<String, Long> countDuplicateCharacters(String str) {
+        return str.codePoints()
+                  .mapToObj(c -> String.valueOf(Character.toChars(c)))
                   .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
     }
 }
